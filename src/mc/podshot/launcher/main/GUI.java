@@ -26,6 +26,9 @@ import javax.swing.SwingWorker;
 import javax.swing.GroupLayout;
 import javax.swing.GroupLayout.Alignment;
 import javax.swing.LayoutStyle.ComponentPlacement;
+import java.awt.Component;
+import javax.swing.Box;
+import java.awt.Canvas;
 
 public class GUI extends JPanel implements ActionListener, PropertyChangeListener {
 	// Main GUI Class, I may split up into multiple classes later
