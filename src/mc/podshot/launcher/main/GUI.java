@@ -167,11 +167,13 @@ public class GUI extends JPanel implements ActionListener, PropertyChangeListene
 		String user = textField.getText();
 		char[] charedpass = passwordfield.getPassword();
 		String pass = String.valueOf(charedpass);
+		@SuppressWarnings("unused")
+		int ramallow = (int)slider.getValue();
 		setCursor(Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));
 		task = new Task();
 		taskOutput.append(user + newline);
 		taskOutput.append(pass + newline);
-		LaunchMC.launch(user, charedpass);
+		LaunchMC.launch(user, charedpass, ramallow);
 		task.addPropertyChangeListener(this);
 		task.execute();
 	}

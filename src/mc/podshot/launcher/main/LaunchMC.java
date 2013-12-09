@@ -21,7 +21,7 @@ import sk.tomsik68.mclauncher.impl.versions.mcassets.MCAssetsVersionList;
 
 public class LaunchMC {
 
-	public static void launch(final String username, char[] Password) {
+	public static void launch(final String username, char[] Password, int ramallowaction) {
 		final String pass = String.valueOf(Password);
 		final MinecraftInstance mc = new MinecraftInstance(new File("testmc"));
 		MCAssetsVersionList list = new MCAssetsVersionList();
@@ -57,11 +57,11 @@ public class LaunchMC {
 							}
 
 							public String getInitHeap() {
-								return "2G";
+								return "1G";
 							}
 
 							public String getHeap() {
-								return "3G";
+								return "2G";
 							}
 
 							public Map<String, String> getCustomParameters() {
