@@ -21,7 +21,7 @@ import sk.tomsik68.mclauncher.impl.versions.mcassets.MCAssetsVersionList;
 
 public class LaunchMC {
 
-	public static void launch(final String username, char[] Password, int ramallowaction) {
+	public static void launch(final String username, char[] Password) {
 		final String pass = String.valueOf(Password);
 		final MinecraftInstance mc = new MinecraftInstance(new File("testmc"));
 		MCAssetsVersionList list = new MCAssetsVersionList();
