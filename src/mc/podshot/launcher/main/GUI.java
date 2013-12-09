@@ -26,7 +26,6 @@ import javax.swing.SwingWorker;
 import javax.swing.GroupLayout;
 import javax.swing.GroupLayout.Alignment;
 import javax.swing.LayoutStyle.ComponentPlacement;
-import javax.swing.JSlider;
 
 public class GUI extends JPanel implements ActionListener, PropertyChangeListener {
 	// Main GUI Class, I may split up into multiple classes later
@@ -41,8 +40,7 @@ public class GUI extends JPanel implements ActionListener, PropertyChangeListene
 	final static boolean RIGHT_TO_LEFT = false;
 	private JTextArea taskOutput;
 	private JPasswordField passwordfield;
-	@SuppressWarnings("unused")
-	private JSlider slider;
+	private JTextField InGB;
 
 
 	class Task extends SwingWorker<Void, Void> {
@@ -148,16 +146,11 @@ public class GUI extends JPanel implements ActionListener, PropertyChangeListene
 
 		JLabel lblRam = new JLabel("RAM");
 		optionPanel.add(lblRam);
-
-		JSlider slider = new JSlider();
-		lblRam.setLabelFor(slider);
-		slider.setToolTipText("RAM Amount (In Gigabytes)");
-		slider.setMajorTickSpacing(1);
-		slider.setValue(1);
-		slider.setPaintLabels(true);
-		slider.setMinimum(1);
-		slider.setMaximum(10);
-		optionPanel.add(slider);
+		
+		InGB = new JTextField();
+		lblRam.setLabelFor(InGB);
+		optionPanel.add(InGB);
+		InGB.setColumns(10);
 		setLayout(groupLayout);
 	}
 
@@ -167,12 +160,12 @@ public class GUI extends JPanel implements ActionListener, PropertyChangeListene
 		String user = textField.getText();
 		char[] charedpass = passwordfield.getPassword();
 		String pass = String.valueOf(charedpass);
-		//int ramallow = slider.getValue();
+		String ramallow = InGB.getText();
 		setCursor(Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));
 		task = new Task();
 		taskOutput.append(user + newline);
 		taskOutput.append(pass + newline);
-		LaunchMC.launch(user, charedpass);
+		LaunchMC.launch(user, charedpass, ramallow);
 		task.addPropertyChangeListener(this);
 		task.execute();
 	}

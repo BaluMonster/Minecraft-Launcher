@@ -21,9 +21,10 @@ import sk.tomsik68.mclauncher.impl.versions.mcassets.MCAssetsVersionList;
 
 public class LaunchMC {
 
-	public static void launch(final String username, char[] Password) {
+	public static void launch(final String username, char[] Password, String ram) {
 		final String pass = String.valueOf(Password);
 		final MinecraftInstance mc = new MinecraftInstance(new File("testmc"));
+		final String finalram = ram + "G";
 		MCAssetsVersionList list = new MCAssetsVersionList();
 		list.addObserver(new IObserver<IVersion>() {
 
@@ -57,7 +58,7 @@ public class LaunchMC {
 							}
 
 							public String getInitHeap() {
-								return "1G";
+								return finalram;
 							}
 
 							public String getHeap() {
