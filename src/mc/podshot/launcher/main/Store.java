@@ -1,32 +1,34 @@
 package mc.podshot.launcher.main;
 
 public class Store {
-	private int ram;
-	private String username;
-	private char[] password;
+	// Class for quickly storing and getting information that allows for the information to be used by other
+	// Parts of the launcher without calling a function from the main class
+	private static int ram;
+	private static String username;
+	private static char[] password;
 	
-	public void setRam(int ramallowcation) {
-		this.ram = ramallowcation;
+	public static void setRam(int ramallowcation) {
+		ram = ramallowcation;
 	}
 	
-	public void setUser(String user) {
-		this.username = user;
+	public static void setUser(String user) {
+		username = user;
 	}
 	
-	public void setPassword(char[] pass) {
-		this.password = pass;
+	public static void setPassword(char[] pass) {
+		password = pass;
 	}
 	
-	public String decodePass() {
+	public static String decodePass() {
 		String uncharedpass = String.valueOf(password);
 		return uncharedpass;
 	}
 	
-	public int getRam() {
+	public static int getRam() {
 		return ram;
 	}
 	
-	public String getUsername() {
+	public static String getUsername() {
 		return username;
 	}
 
