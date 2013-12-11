@@ -21,10 +21,14 @@ import sk.tomsik68.mclauncher.impl.versions.mcassets.MCAssetsVersionList;
 
 public class LaunchMC {
 
-	public static void launch(final String username, char[] Password, String ram) {
-		final String pass = String.valueOf(Password);
+	public static void launch() {
+		final String finalram = Store.getRam() + "G";
+		final String username = Store.getUsername();
+		final String pass = Store.decodePass();
+		
+		//final String pass = String.valueOf(Password);
 		final MinecraftInstance mc = new MinecraftInstance(new File("testmc"));
-		final String finalram = ram + "G";
+		//final String finalram = ram + "G";
 		MCAssetsVersionList list = new MCAssetsVersionList();
 		list.addObserver(new IObserver<IVersion>() {
 
