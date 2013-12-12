@@ -6,6 +6,12 @@ public class Store {
 	private static int ram;
 	private static String username;
 	private static char[] password;
+	private static String website;
+	private static String login;
+	private static String session;
+	private static String accounts;
+	private static String auth;
+	private static String skins;
 	
 	public static void setRam(int ramallowcation) {
 		ram = ramallowcation;
@@ -32,4 +38,51 @@ public class Store {
 		return username;
 	}
 
+	public static void setWebsiteStatus(String web) {
+		website = web;
+	}
+
+	public static void setLoginStatus(String log) {
+		login = log;
+	}
+
+	public static void setSessionStatus(String ses) {
+		session = ses;
+	}
+
+	public static void setAccountStatus(String acc) {
+		accounts = acc;
+	}
+
+	public static void setAuthStatus(String ath) {
+		auth = ath;
+	}
+
+	public static void setSkinStatus(String skin) {
+		skins = skin;
+	}
+	
+	public static String getWebsiteStatus() {
+		return website;
+	}
+	
+	public static String getLoginStatus() {
+		return login;
+	}
+	
+	public static String getSessionStatus() {
+		return session;
+	}
+	
+	public static String getAccountStatus() {
+		return accounts;
+	}
+	
+	public static String getAuthStatus() {
+		return auth;
+	}
+	
+	public static String getSkinStatus() {
+		return skins;
+	}
 }
