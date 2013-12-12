@@ -8,6 +8,7 @@ import net.minidev.json.JSONObject;
 import net.minidev.json.JSONValue;
 import sk.tomsik68.mclauncher.util.HttpUtils;
 
+@SuppressWarnings("unused")
 public class CheckServers {
 	
 	public static void checkServers() throws Exception {
