@@ -4,7 +4,6 @@ import net.minidev.json.JSONObject;
 import net.minidev.json.JSONStyle;
 import sk.tomsik68.mclauncher.api.json.IJSONSerializable;
 
-@SuppressWarnings("unused")
 public class YDSessionLoginRequest implements IJSONSerializable {
     private final String sessionID, clientToken;
 

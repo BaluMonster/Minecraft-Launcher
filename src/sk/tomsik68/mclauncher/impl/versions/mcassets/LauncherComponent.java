@@ -20,8 +20,7 @@ import javax.swing.table.DefaultTableModel;
 public class LauncherComponent extends Applet implements AppletStub {
     private static final long serialVersionUID = -6942044817024235085L;
     private Applet minecraft;
-    @SuppressWarnings({ "unchecked", "rawtypes" })
-	private HashMap<String, Object> params = new HashMap();
+    private HashMap<String, Object> params = new HashMap();
     private final ClassLoader loader;
     protected boolean active = false;
     private final JSplitPane splitPane;
@@ -113,8 +112,7 @@ public class LauncherComponent extends Applet implements AppletStub {
     }
 
     public void startMinecraft() {
-        @SuppressWarnings("unused")
-		Thread thread = new Thread() {
+        Thread thread = new Thread() {
             public void run() {
                 while (LauncherComponent.this.active) {
                     LauncherComponent.this.repaint();

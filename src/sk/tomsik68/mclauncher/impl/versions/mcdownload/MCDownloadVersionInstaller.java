@@ -15,6 +15,7 @@ import sk.tomsik68.mclauncher.api.versions.IVersionInstallListener;
 import sk.tomsik68.mclauncher.api.versions.IVersionInstaller;
 import sk.tomsik68.mclauncher.resources.ResourcesXMLParser;
 import sk.tomsik68.mclauncher.util.FileUtils;
+import sun.security.action.GetLongAction;
 
 public class MCDownloadVersionInstaller implements IVersionInstaller {
     private static final String JAR_DOWNLOAD_URL = "https://s3.amazonaws.com/Minecraft.Download/versions/<VERSION>/<VERSION>.jar";
