@@ -1,36 +1,31 @@
 package mc.podshot.launcher.main;
 
+import java.awt.Component;
+import java.awt.Cursor;
+import java.awt.FlowLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.beans.PropertyChangeEvent;
 import java.beans.PropertyChangeListener;
 import java.io.File;
-import java.net.URL;
 
-import javax.swing.JFrame;
-
-import java.awt.Cursor;
-import java.awt.Panel;
-
-import javax.swing.ImageIcon;
-import javax.swing.JComponent;
-import javax.swing.JLabel;
 import javax.swing.JButton;
-import javax.swing.JPasswordField;
-import java.awt.FlowLayout;
-import javax.swing.JTextField;
+import javax.swing.JComponent;
+import javax.swing.JFrame;
+import javax.swing.JLabel;
 import javax.swing.JPanel;
-import org.eclipse.wb.swing.FocusTraversalOnArray;
-import java.awt.Component;
-import java.awt.GridBagLayout;
-import java.awt.GridBagConstraints;
-import java.awt.GridLayout;
-import com.jgoodies.forms.layout.FormLayout;
-import com.jgoodies.forms.layout.ColumnSpec;
-import com.jgoodies.forms.layout.RowSpec;
-import com.jgoodies.forms.factories.FormFactory;
+import javax.swing.JPasswordField;
+import javax.swing.JTextField;
 import javax.swing.SwingConstants;
+
 import net.miginfocom.swing.MigLayout;
+
+import org.eclipse.wb.swing.FocusTraversalOnArray;
+
+import com.jgoodies.forms.factories.FormFactory;
+import com.jgoodies.forms.layout.ColumnSpec;
+import com.jgoodies.forms.layout.FormLayout;
+import com.jgoodies.forms.layout.RowSpec;
 
 public class NewGUI extends JPanel implements ActionListener, PropertyChangeListener {
 	private static final long serialVersionUID = 1L;
@@ -80,33 +75,68 @@ public class NewGUI extends JPanel implements ActionListener, PropertyChangeList
 		
 		JPanel panel = new JPanel();
 		add(panel, "3, 4");
-		panel.setLayout(new MigLayout("", "[46px][46px][][][][][]", "[14px][][][][]"));
+		panel.setLayout(new MigLayout("", "[46px][46px][][][][][]", "[14px][][][][][]"));
+		
+		//JLabel lblNewLabel_3 = new JLabel("New label");
+		//panel.add(lblNewLabel_3, "cell 6 5");
+		
+		//JLabel loginLabel = new JLabel("Login Servers are Online");
+		//panel.add(loginLabel, "cell 6 0,alignx left,aligny top");
+		
+		
+		
 		
 		if (Store.getLoginStatus().equalsIgnoreCase("green")) {
-			JLabel loginLabel = new JLabel("Login Servers are Online");
+			JLabel loginLabel = new JLabel("Login Server is Online");
 			panel.add(loginLabel, "cell 6 0,alignx left,aligny top");
 		} else {
-			JLabel loginLabel = new JLabel("Login Servers are Offline");
+			JLabel loginLabel = new JLabel("Login Server is Offline");
 			panel.add(loginLabel, "cell 6 0,alignx left,aligny top");
 		}
 		
 		if (Store.getWebsiteStatus().equalsIgnoreCase("green")) {
-			JLabel webLabel = new JLabel("The Minercaft Website is Online");
+			JLabel webLabel = new JLabel("Minercaft.net is Online");
 			webLabel.setHorizontalAlignment(SwingConstants.TRAILING);
-			panel.add(webLabel, "cell 6 2,alignx left,aligny top");
+			panel.add(webLabel, "cell 6 1,alignx left,aligny top");
 		} else {
-			JLabel webLabel = new JLabel("The Minercaft Website is Offline");
+			JLabel webLabel = new JLabel("Minercaft.net is Offline");
 			webLabel.setHorizontalAlignment(SwingConstants.TRAILING);
-			panel.add(webLabel, "cell 6 2,alignx left,aligny top");
+			panel.add(webLabel, "cell 6 1,alignx left,aligny top");
+		}
+		
+		if (Store.getSessionStatus().equalsIgnoreCase("green")) {
+			JLabel lblNewLabel_2 = new JLabel("Session Server is Online");
+			panel.add(lblNewLabel_2, "cell 6 2");
+		} else {
+			JLabel lblNewLabel_2 = new JLabel("Session Server is Offline");
+			panel.add(lblNewLabel_2, "cell 6 2");
 		}
 		
 		if (Store.getAuthStatus().equalsIgnoreCase("green")) {
-			JLabel sessionLabel = new JLabel("Authentication Servers are Online");
-			panel.add(sessionLabel, "cell 6 4");
+			JLabel sessionLabel = new JLabel("Authentication Server is Online");
+			panel.add(sessionLabel, "cell 6 3");
 		} else {
-			JLabel sessionLabel = new JLabel("Authentication Servers are Offline");
-			panel.add(sessionLabel, "cell 6 4");
+			JLabel sessionLabel = new JLabel("Authentication Server is Offline");
+			panel.add(sessionLabel, "cell 6 3");
 		}
+		
+		if (Store.getAccountStatus().equalsIgnoreCase("green")) {
+			JLabel lblNewLabel_3 = new JLabel("Account Server is Online");
+			panel.add(lblNewLabel_3, "cell 6 4");
+		} else {
+			JLabel lblNewLabel_3 = new JLabel("Account Server is Offline");
+			panel.add(lblNewLabel_3, "cell 6 4");
+		}
+		
+		if (Store.getAccountStatus().equalsIgnoreCase("green")) {
+			JLabel lblNewLabel_3 = new JLabel("Skin Server is Online");
+			panel.add(lblNewLabel_3, "cell 6 5");
+		} else {
+			JLabel lblNewLabel_3 = new JLabel("Skin Server is Offline");
+			panel.add(lblNewLabel_3, "cell 6 5");
+		}
+		
+		
 		
 	}
 
