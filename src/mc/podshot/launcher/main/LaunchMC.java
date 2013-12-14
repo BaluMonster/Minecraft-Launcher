@@ -76,6 +76,12 @@ public class LaunchMC {
 							public List<String> getCommandPrefix() {
 								return Collections.emptyList();
 							}
+
+							@Override
+							public File getJavaLocation() {
+								// TODO Auto-generated method stub
+								return null;
+							}
 						});
 						BufferedReader br = new BufferedReader(new InputStreamReader(proc.getInputStream()));
 						String line;

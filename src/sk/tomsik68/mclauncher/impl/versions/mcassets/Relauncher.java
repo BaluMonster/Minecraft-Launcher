@@ -23,18 +23,13 @@ public class Relauncher {
             arguments.put("-m", "false");
             arguments.put("-w", "800");
             arguments.put("-h", "600");
-            arguments.put("-dir", Platform.getCurrentPlatform().getWorkingDirectory().getAbsolutePath());
+            arguments.put("-dlt", "deprecated");
+            arguments.put("-lv", "deprecated");
             for(int i = 0;i<args.length;++i){
                 if((args[i].equalsIgnoreCase("--user-name") || args[i].equalsIgnoreCase("-un")) && (i+1) < args.length){
                     arguments.put("-un", args[i+1]);
                 }else if(args[i].equalsIgnoreCase("-sid") && (i+1) < args.length){
                     arguments.put("-sid", args[i+1]);
-                }else if(args[i].equalsIgnoreCase("-dlt") && (i+1) < args.length){
-                    arguments.put("-dlt", args[i+1]);
-                }else if(args[i].equalsIgnoreCase("-lv") && (i+1) < args.length){
-                    arguments.put("-lv", args[i+1]);
-                }else if(args[i].equalsIgnoreCase("-dlt") && (i+1) < args.length){
-                    arguments.put("-dlt", args[i+1]);
                 }else if(args[i].equalsIgnoreCase("-dm")){
                     arguments.put("-dm", "true");
                 }else if(args[i].equalsIgnoreCase("-ap")){
@@ -53,6 +48,10 @@ public class Relauncher {
                     arguments.put("-h", args[i+1]);
                 }else if(args[i].equalsIgnoreCase("-m")){
                     arguments.put("-m", "true");
+                }else if(args[i].equalsIgnoreCase("-lwjgl") && (i+1) < args.length){
+                    arguments.put("-lwjgl", args[i+1]);
+                }else if(args[i].equalsIgnoreCase("-jlibpath") && (i+1) < args.length){
+                    arguments.put("-jlibpath", args[i+1]);
                 }else if(args[i].equalsIgnoreCase("-args") && (i+1) < args.length){
                     arguments.put("-args", args[i+1]);
                 }
@@ -113,9 +112,8 @@ public class Relauncher {
             for(File lib : libraries){
                 loader.addJAR(lib.toURI().toURL());
             }
-            // TODO argument for natives directory. This is ugly. 
-            System.setProperty("org.lwjgl.librarypath", new File(gameDir,"bin"+File.separator+"natives").getAbsolutePath());
-            System.setProperty("net.java.games.input.librarypath", new File(gameDir,"bin"+File.separator+"natives").getAbsolutePath());
+            System.setProperty("org.lwjgl.librarypath", new File(arguments.get("-lwjgl")).getAbsolutePath());
+            System.setProperty("net.java.games.input.librarypath", new File(arguments.get("-jlibpath")).getAbsolutePath());
             LauncherComponent launcher = new LauncherComponent(loader);
             launcher.setParameter("username", userName);
             launcher.setParameter("sessionid", sessionID);
@@ -151,12 +149,15 @@ public class Relauncher {
             //}
             /*if(options.has(argsOption)){
                 JSONObject params = (JSONObject) JSONValue.parse(options.valueOf(argsOption));*/
+            JSONObject params = null;
             if(arguments.containsKey("-args")){
-                JSONObject params = (JSONObject) JSONValue.parse(arguments.get("-args"));
+                params = (JSONObject) JSONValue.parse(arguments.get("-args"));
                 launcher.setAll(params);
             }
             JFrame frame = new JFrame();
             frame.setSize(w, h);
+            // TODO change title feature
+            frame.setTitle(gameFile.getName()+" running via MCLauncherAPI");
             launcher.setSize(w,h);
             if (maximize)
                 frame.setExtendedState(JFrame.MAXIMIZED_BOTH);
@@ -169,7 +170,7 @@ public class Relauncher {
             }else
                 launcher.startMinecraft();
         } catch (Exception e) {
-            e.printStackTrace(System.err);
+            e.printStackTrace();
             System.exit(1);
         }
     }
