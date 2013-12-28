@@ -82,6 +82,12 @@ public class LaunchMC {
 								// TODO Auto-generated method stub
 								return null;
 							}
+
+							@Override
+							public List<String> getJavaArguments() {
+								// TODO Auto-generated method stub
+								return null;
+							}
 						});
 						BufferedReader br = new BufferedReader(new InputStreamReader(proc.getInputStream()));
 						String line;

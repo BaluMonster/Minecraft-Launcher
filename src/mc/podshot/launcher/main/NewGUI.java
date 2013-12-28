@@ -26,6 +26,8 @@ import com.jgoodies.forms.factories.FormFactory;
 import com.jgoodies.forms.layout.ColumnSpec;
 import com.jgoodies.forms.layout.FormLayout;
 import com.jgoodies.forms.layout.RowSpec;
+import javax.swing.JComboBox;
+import java.awt.List;
 
 public class NewGUI extends JPanel implements ActionListener, PropertyChangeListener {
 	private static final long serialVersionUID = 1L;
@@ -154,11 +156,10 @@ public class NewGUI extends JPanel implements ActionListener, PropertyChangeList
 		String user = textField.getText();
 		char[] charedpass = passwordfield.getPassword();
 		//String pass = String.valueOf(charedpass);
-		//String ramallow = InGB.getText();
-		//int intram = Integer.parseInt(ramallow);
-		//Store.setRam(intram);
 		Store.setUser(user);
 		Store.setPassword(charedpass);
+		Store.setRam(1);
+		LaunchMC.launch();
 		setCursor(Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));
 		
 	}
