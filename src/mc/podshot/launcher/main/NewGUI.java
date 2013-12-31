@@ -18,6 +18,7 @@ import javax.swing.JPasswordField;
 import javax.swing.JTextField;
 import javax.swing.SwingConstants;
 
+import mc.podshot.launcher.main.backround.Store;
 import net.miginfocom.swing.MigLayout;
 
 import org.eclipse.wb.swing.FocusTraversalOnArray;
@@ -26,8 +27,6 @@ import com.jgoodies.forms.factories.FormFactory;
 import com.jgoodies.forms.layout.ColumnSpec;
 import com.jgoodies.forms.layout.FormLayout;
 import com.jgoodies.forms.layout.RowSpec;
-import javax.swing.JComboBox;
-import java.awt.List;
 
 public class NewGUI extends JPanel implements ActionListener, PropertyChangeListener {
 	private static final long serialVersionUID = 1L;

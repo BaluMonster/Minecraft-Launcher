@@ -1,4 +1,4 @@
-package mc.podshot.launcher.main;
+package mc.podshot.launcher.main.backround;
 
 public class Store {
 	// Class for quickly storing and getting information that allows for the information to be used by other

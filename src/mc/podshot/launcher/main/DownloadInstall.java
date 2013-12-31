@@ -13,46 +13,54 @@ import sk.tomsik68.mclauncher.impl.versions.mcdownload.MCDownloadVersionList;
 public class DownloadInstall {
 	
 	public void Install() {
-		MCDownloadVersionList list = new MCDownloadVersionList();
-		final IMinecraftInstance mc = new MinecraftInstance(new File("podtestmc"));
-		list.addObserver(new IObserver<IVersion>() {
-			private boolean installed = false;
-			
-			@Override
-			public void onUpdate(IObservable<IVersion> observable, IVersion changed) {
-				if (installed)
-					return;
-				installed = true;
-				System.out.println("Installing " + changed.getDisplayName());
-				try {
-					changed.getInstaller().install(changed, mc, new IProgressMonitor() {
-						
-						public void setProgress(int progress) {
-							//TODO
-						}
-						
-						public void setMax(int len) {
-							//TODO
-						}
-						
-						public void incrementProgress(int amount) {
-							//TODO
-						}
-						
-						public void finish() {
-							//TODO
-						}
-					});
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
-			}
-		});
-		try {
-			list.startDownload();
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
-	}
+		 MCDownloadVersionList list = new MCDownloadVersionList();
+	        final IMinecraftInstance mc = new MinecraftInstance(new File("testmc"));
+	        list.addObserver(new IObserver<IVersion>() {
+	            private boolean installed = false;
+	            @Override
+	            public void onUpdate(IObservable<IVersion> observable, IVersion changed) {
+	                if(installed)
+	                    return;
+	                installed = true;
+	                System.out.println("Installing " + changed.getDisplayName());
+	                try {
+	                    changed.getInstaller().install(changed, mc, new IProgressMonitor() {
+
+	                        @Override
+	                        public void setProgress(int progress) {
+	                            // TODO Auto-generated method stub
+
+	                        }
+
+	                        @Override
+	                        public void setMax(int len) {
+	                            // TODO Auto-generated method stub
+
+	                        }
+
+	                        @Override
+	                        public void incrementProgress(int amount) {
+	                            // TODO Auto-generated method stub
+
+	                        }
+
+	                        @Override
+	                        public void finish() {
+	                            // TODO Auto-generated method stub
+
+	                        }
+	                    });
+	                } catch (Exception e) {
+	                    e.printStackTrace();
+	                }
+
+	            }
+	        });
+	        try {
+	            list.startDownload();
+	        } catch (Exception e) {
+	            e.printStackTrace();
+	        }
+	    }
 
 }
