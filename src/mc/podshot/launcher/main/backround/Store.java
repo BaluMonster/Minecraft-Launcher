@@ -12,6 +12,7 @@ public class Store {
 	private static String accounts;
 	private static String auth;
 	private static String skins;
+	private static boolean debug;
 	
 	public static void setRam(int ramallowcation) {
 		ram = ramallowcation;
@@ -62,6 +63,11 @@ public class Store {
 		skins = skin;
 	}
 	
+	public static void setDebug(boolean deb) {
+		debug = deb;
+		
+	}
+	
 	public static String getWebsiteStatus() {
 		return website;
 	}
@@ -85,4 +91,9 @@ public class Store {
 	public static String getSkinStatus() {
 		return skins;
 	}
+	
+	public static boolean getDebug() {
+		return debug;
+	}
+
 }

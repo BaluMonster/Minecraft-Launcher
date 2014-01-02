@@ -14,7 +14,7 @@ public class DownloadInstall {
 	
 	public void Install() {
 		 MCDownloadVersionList list = new MCDownloadVersionList();
-	        final IMinecraftInstance mc = new MinecraftInstance(new File("testmc"));
+	        final IMinecraftInstance mc = new MinecraftInstance(new File("podmc"));
 	        list.addObserver(new IObserver<IVersion>() {
 	            private boolean installed = false;
 	            @Override

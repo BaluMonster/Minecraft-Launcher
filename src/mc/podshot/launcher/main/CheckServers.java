@@ -36,7 +36,6 @@ public class CheckServers {
 		Store.setAccountStatus(accounts);
 		Store.setAuthStatus(auth);
 		Store.setSkinStatus(skins);
-		return;
 	}
 
 }
