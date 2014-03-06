@@ -1,4 +1,4 @@
-package mc.podshot.launcher.main;
+package mc.podshot.launcher.main.deprecated;
 
 import sk.tomsik68.mclauncher.api.common.IObservable;
 import sk.tomsik68.mclauncher.api.common.IObserver;

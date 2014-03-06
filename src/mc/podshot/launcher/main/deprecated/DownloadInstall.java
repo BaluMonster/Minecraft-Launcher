@@ -1,4 +1,4 @@
-package mc.podshot.launcher.main;
+package mc.podshot.launcher.main.deprecated;
 
 import java.io.File;
 

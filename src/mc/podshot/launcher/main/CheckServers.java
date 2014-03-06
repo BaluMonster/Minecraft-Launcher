@@ -3,7 +3,7 @@ package mc.podshot.launcher.main;
 import java.util.Arrays;
 import java.util.List;
 
-import mc.podshot.launcher.main.backround.Store;
+import mc.podshot.launcher.main.backround.LaunchStore;
 import net.minidev.json.JSONArray;
 import net.minidev.json.JSONObject;
 import net.minidev.json.JSONValue;
@@ -30,12 +30,12 @@ public class CheckServers {
 		String skins = (String) sk.get("skins.minecraft.net");
 		//List<String> statuses = Arrays.asList(website, login, session, accounts, auth, skins);
 		//System.out.println(statuses);
-		Store.setWebsiteStatus(website);
-		Store.setLoginStatus(login);
-		Store.setSessionStatus(session);
-		Store.setAccountStatus(accounts);
-		Store.setAuthStatus(auth);
-		Store.setSkinStatus(skins);
+		LaunchStore.setWebsiteStatus(website);
+		LaunchStore.setLoginStatus(login);
+		LaunchStore.setSessionStatus(session);
+		LaunchStore.setAccountStatus(accounts);
+		LaunchStore.setAuthStatus(auth);
+		LaunchStore.setSkinStatus(skins);
 	}
 
 }

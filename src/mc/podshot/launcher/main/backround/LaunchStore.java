@@ -1,9 +1,10 @@
 package mc.podshot.launcher.main.backround;
 
-public class Store {
+import mc.podshot.launcher.launch.GameLauncher;
+
+public class LaunchStore {
 	// Class for quickly storing and getting information that allows for the information to be used by other
 	// Parts of the launcher without calling a function from the main class
-	private static int ram;
 	private static String username;
 	private static char[] password;
 	private static String website;
@@ -13,10 +14,8 @@ public class Store {
 	private static String auth;
 	private static String skins;
 	private static boolean debug;
-	
-	public static void setRam(int ramallowcation) {
-		ram = ramallowcation;
-	}
+	private static String dir;
+	private static GameLauncher launcher;
 	
 	public static void setUser(String user) {
 		username = user;
@@ -29,10 +28,6 @@ public class Store {
 	public static String decodePass() {
 		String uncharedpass = String.valueOf(password);
 		return uncharedpass;
-	}
-	
-	public static int getRam() {
-		return ram;
 	}
 	
 	public static String getUsername() {
@@ -94,6 +89,23 @@ public class Store {
 	
 	public static boolean getDebug() {
 		return debug;
+	}
+
+	public static void setMCDir(String mcDir) {
+		dir = mcDir;
+		
+	}
+	
+	public static String getMCDir() {
+		return dir;
+	}
+	
+	public static void setLaunch(GameLauncher laun) {
+		launcher = laun;
+	}
+	
+	public static GameLauncher getLauncher() {
+		return launcher;
 	}
 
 }
