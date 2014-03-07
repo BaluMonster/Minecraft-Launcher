@@ -1,23 +1,45 @@
 package mc.podshot.launcher.main;
 
+import java.io.File;
+import java.io.IOException;
+
+import mc.podshot.launcher.files.JSONWriter;
+import mc.podshot.launcher.files.WriteConfig;
 import mc.podshot.launcher.gui.MainGUI;
 import mc.podshot.launcher.launch.GameLauncher;
 import mc.podshot.launcher.launch.Launch;
+import mc.podshot.launcher.main.backround.ConfigStore;
 import mc.podshot.launcher.main.backround.LaunchStore;
 
 public class Startup {
-	
+
 	private static Launch instance;
 
 	public static void main(String[] args) {
 		boolean debug = true;
 		String version = "DEV";
+		// File Setup
+		File profiledir = new File("profiles");
+		profiledir.mkdir();
+		File configdir = new File("config");
+		configdir.mkdir();
+		// End File Setup
+		File config = new File("config/config.properties");
+		ConfigStore.setLastProfile("DEV");
+		if (!config.exists()) {
+			WriteConfig.writeConfig();
+		}
 		if (debug == true) {
 			System.out.println("Podshot Launcher Version: " + version);
+			JSONWriter.writeProfileJSON("test", "test2", debug, null, version);
+			//try {
+			//JSONWriter.updateJSON(0, version, version, profiledir);
+			//} catch (IOException e) {
+			// TODO Auto-generated catch block
+			//e.printStackTrace();
+			//}
 		}
 		// Execution Class, everything that need to be ran before the GUI is initalized
-		@SuppressWarnings("unused")
-		LaunchStore storing = new LaunchStore();
 		LaunchStore.setDebug(debug);
 		try {
 			CheckServers.checkServers();
@@ -30,11 +52,13 @@ public class Startup {
 		if (debug == true) {
 			System.out.println("Building GUI");
 		}
+		
 		GameLauncher launcher = new GameLauncher();
 		launcher.downloadVersions();
 		instance = new Launch(launcher);
 		LaunchStore.setLaunch(launcher);
 		MainGUI.build();
+		
 	}
 
 }

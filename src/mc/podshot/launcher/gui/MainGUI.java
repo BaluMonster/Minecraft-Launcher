@@ -44,10 +44,10 @@ public class MainGUI extends JPanel implements ActionListener {
 				FormFactory.DEFAULT_COLSPEC,
 				ColumnSpec.decode("max(347dlu;min)"),
 				FormFactory.RELATED_GAP_COLSPEC,
-				FormFactory.DEFAULT_COLSPEC,},
-				new RowSpec[] {
+				ColumnSpec.decode("default:grow"),},
+			new RowSpec[] {
 				FormFactory.LINE_GAP_ROWSPEC,
-				RowSpec.decode("33px"),
+				RowSpec.decode("33px:grow"),
 				FormFactory.RELATED_GAP_ROWSPEC,
 				RowSpec.decode("76dlu:grow"),}));
 
@@ -77,16 +77,27 @@ public class MainGUI extends JPanel implements ActionListener {
 		startButton.setActionCommand("launch");
 		startButton.addActionListener(this);
 		loginPanel.setFocusTraversalPolicy(new FocusTraversalOnArray(new Component[]{Username}));
+		
+		JPanel settingPanel = new JPanel();
+		add(settingPanel, "5, 2, fill, fill");
+		
+				Settings = new JButton("Settings");
+				settingPanel.add(Settings);
+				Settings.setToolTipText("Open Settings Window");
+				Settings.setActionCommand("settings");
+				Settings.addActionListener(this);
 
-		Settings = new JButton("Settings");
-		Settings.setToolTipText("Open Settings Window");
-		Settings.setActionCommand("settings");
-		Settings.addActionListener(this);
-		add(Settings, "5, 2");
-
+		JPanel ServicePanel = new JPanel();
+		add(ServicePanel, "3, 4");
+		ServicePanel.setLayout(new MigLayout("", "[46px][46px][][][][][]", "[14px][][][][][]"));
+		
 		JPanel panel = new JPanel();
-		add(panel, "3, 4");
-		panel.setLayout(new MigLayout("", "[46px][46px][][][][][]", "[14px][][][][][]"));
+		add(panel, "5, 4, fill, fill");
+		panel.setLayout(null);
+		
+		JButton btnUnzipWorld = new JButton("Unzip World");
+		btnUnzipWorld.setBounds(10, 11, 131, 23);
+		panel.add(btnUnzipWorld);
 
 		//JLabel lblNewLabel_3 = new JLabel("New label");
 		//panel.add(lblNewLabel_3, "cell 6 5");
@@ -99,52 +110,52 @@ public class MainGUI extends JPanel implements ActionListener {
 
 		if (LaunchStore.getLoginStatus().equalsIgnoreCase("green")) {
 			JLabel loginLabel = new JLabel("Login Server is Online");
-			panel.add(loginLabel, "cell 6 0,alignx left,aligny top");
+			ServicePanel.add(loginLabel, "cell 6 0,alignx left,aligny top");
 		} else {
 			JLabel loginLabel = new JLabel("Login Server is Offline");
-			panel.add(loginLabel, "cell 6 0,alignx left,aligny top");
+			ServicePanel.add(loginLabel, "cell 6 0,alignx left,aligny top");
 		}
 
 		if (LaunchStore.getWebsiteStatus().equalsIgnoreCase("green")) {
 			JLabel webLabel = new JLabel("Minercaft.net is Online");
 			webLabel.setHorizontalAlignment(SwingConstants.TRAILING);
-			panel.add(webLabel, "cell 6 1,alignx left,aligny top");
+			ServicePanel.add(webLabel, "cell 6 1,alignx left,aligny top");
 		} else {
 			JLabel webLabel = new JLabel("Minercaft.net is Offline");
 			webLabel.setHorizontalAlignment(SwingConstants.TRAILING);
-			panel.add(webLabel, "cell 6 1,alignx left,aligny top");
+			ServicePanel.add(webLabel, "cell 6 1,alignx left,aligny top");
 		}
 
 		if (LaunchStore.getSessionStatus().equalsIgnoreCase("green")) {
 			JLabel lblNewLabel_2 = new JLabel("Session Server is Online");
-			panel.add(lblNewLabel_2, "cell 6 2");
+			ServicePanel.add(lblNewLabel_2, "cell 6 2");
 		} else {
 			JLabel lblNewLabel_2 = new JLabel("Session Server is Offline");
-			panel.add(lblNewLabel_2, "cell 6 2");
+			ServicePanel.add(lblNewLabel_2, "cell 6 2");
 		}
 
 		if (LaunchStore.getAuthStatus().equalsIgnoreCase("green")) {
 			JLabel sessionLabel = new JLabel("Authentication Server is Online");
-			panel.add(sessionLabel, "cell 6 3");
+			ServicePanel.add(sessionLabel, "cell 6 3");
 		} else {
 			JLabel sessionLabel = new JLabel("Authentication Server is Offline");
-			panel.add(sessionLabel, "cell 6 3");
+			ServicePanel.add(sessionLabel, "cell 6 3");
 		}
 
 		if (LaunchStore.getAccountStatus().equalsIgnoreCase("green")) {
 			JLabel lblNewLabel_3 = new JLabel("Account Server is Online");
-			panel.add(lblNewLabel_3, "cell 6 4");
+			ServicePanel.add(lblNewLabel_3, "cell 6 4");
 		} else {
 			JLabel lblNewLabel_3 = new JLabel("Account Server is Offline");
-			panel.add(lblNewLabel_3, "cell 6 4");
+			ServicePanel.add(lblNewLabel_3, "cell 6 4");
 		}
 
 		if (LaunchStore.getAccountStatus().equalsIgnoreCase("green")) {
 			JLabel lblNewLabel_3 = new JLabel("Skin Server is Online");
-			panel.add(lblNewLabel_3, "cell 6 5");
+			ServicePanel.add(lblNewLabel_3, "cell 6 5");
 		} else {
 			JLabel lblNewLabel_3 = new JLabel("Skin Server is Offline");
-			panel.add(lblNewLabel_3, "cell 6 5");
+			ServicePanel.add(lblNewLabel_3, "cell 6 5");
 		}
 
 
@@ -204,5 +215,4 @@ public class MainGUI extends JPanel implements ActionListener {
 			}
 		});
 	}
-
 }
