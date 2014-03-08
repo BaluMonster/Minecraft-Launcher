@@ -2,14 +2,18 @@ package mc.podshot.launcher.main;
 
 import java.io.File;
 import java.io.IOException;
+import java.util.List;
 
 import mc.podshot.launcher.files.JSONWriter;
 import mc.podshot.launcher.files.WriteConfig;
 import mc.podshot.launcher.gui.MainGUI;
+import mc.podshot.launcher.gui.NewMainGUI;
 import mc.podshot.launcher.launch.GameLauncher;
 import mc.podshot.launcher.launch.Launch;
 import mc.podshot.launcher.main.backround.ConfigStore;
+import mc.podshot.launcher.main.backround.GUIStore;
 import mc.podshot.launcher.main.backround.LaunchStore;
+import mc.podshot.launcher.main.resources.ListFiles;
 
 public class Startup {
 
@@ -52,12 +56,17 @@ public class Startup {
 		if (debug == true) {
 			System.out.println("Building GUI");
 		}
+		List<String> list = ListFiles.listFiles("profiles/");
+		GUIStore.setProfiles(list);
+		System.out.println(list);
 		
 		GameLauncher launcher = new GameLauncher();
 		launcher.downloadVersions();
 		instance = new Launch(launcher);
 		LaunchStore.setLaunch(launcher);
-		MainGUI.build();
+		//MainGUI.build();
+		NewMainGUI.build();
+		
 		
 	}
 
