@@ -1,17 +1,19 @@
 package mc.podshot.launcher.gui;
 
+import java.awt.Dimension;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.File;
+import java.util.List;
 
+import javax.swing.JButton;
 import javax.swing.JComponent;
 import javax.swing.JFileChooser;
 import javax.swing.JFrame;
-import javax.swing.JPanel;
-import javax.swing.JPasswordField;
-import javax.swing.JTextField;
 import javax.swing.JLabel;
-import javax.swing.JButton;
+import javax.swing.JPanel;
+import javax.swing.JSpinner;
+import javax.swing.SpinnerListModel;
 import javax.swing.filechooser.FileNameExtensionFilter;
 
 import mc.podshot.launcher.files.UnZipper;
@@ -25,48 +27,32 @@ public class NewMainGUI extends JPanel implements ActionListener {
 	private JLabel webLabel;
 	private JLabel skinLabel;
 	private JButton btnzipworld;
+	private JSpinner profileSpinner;
+	private JButton btnCreateProfile;
 
 
 	public NewMainGUI() {
 		setLayout(null);
 		
 		JPanel LoginPanel = new JPanel();
-		LoginPanel.setBounds(0, 0, 521, 323);
+		LoginPanel.setBounds(0, 0, 596, 323);
 		add(LoginPanel);
 		LoginPanel.setLayout(null);
 		
-		UserField = new JTextField();
-		UserField.setBounds(79, 11, 150, 20);
-		LoginPanel.add(UserField);
-		UserField.setColumns(10);
-		
-		JLabel lblUsername = new JLabel("Username:");
-		lblUsername.setBounds(22, 14, 60, 14);
-		LoginPanel.add(lblUsername);
-		
-		JLabel lblPassword = new JLabel("Password:");
-		lblPassword.setBounds(239, 14, 64, 14);
-		LoginPanel.add(lblPassword);
-		
-		PassField = new JPasswordField();
-		PassField.setBounds(313, 11, 150, 20);
-		LoginPanel.add(PassField);
-		PassField.setColumns(10);
-		
 		btnLogin = new JButton("Login");
-		btnLogin.setBounds(22, 61, 89, 23);
+		btnLogin.setBounds(174, 22, 89, 23);
 		btnLogin.setActionCommand("launch");
 		btnLogin.addActionListener(this);
 		LoginPanel.add(btnLogin);
 		
 		btnSettings = new JButton("Settings");
-		btnSettings.setBounds(121, 61, 89, 23);
+		btnSettings.setBounds(273, 22, 89, 23);
 		LoginPanel.add(btnSettings);
 		btnSettings.setActionCommand("settings");
 		btnSettings.addActionListener(this);
 		
 		btnzipworld = new JButton("UnZip World");
-		btnzipworld.setBounds(220, 61, 105, 23);
+		btnzipworld.setBounds(22, 58, 105, 23);
 		btnzipworld.setActionCommand("world");
 		btnzipworld.addActionListener(this);
 		LoginPanel.add(btnzipworld);
@@ -75,6 +61,14 @@ public class NewMainGUI extends JPanel implements ActionListener {
 		infopanel.setBounds(10, 124, 347, 177);
 		LoginPanel.add(infopanel);
 		infopanel.setLayout(null);
+		
+		profileSpinner = new JSpinner();
+		List<String> list = GUIStore.getProfiles();
+		String[] profiles = new String[ list.size() ];
+		list.toArray(profiles);
+		profileSpinner.setModel(new SpinnerListModel(profiles));
+		profileSpinner.setBounds(53, 23, 111, 20);
+		LoginPanel.add(profileSpinner);
 		
 		if (LaunchStore.getLoginStatus().equalsIgnoreCase("green")) {
 			loginLabel = new JLabel("Login Server is Online");
@@ -129,10 +123,18 @@ public class NewMainGUI extends JPanel implements ActionListener {
 			skinLabel.setBounds(10, 90, 150, 14);
 		}
 		infopanel.add(skinLabel);
+		
+		JLabel lblProfile = new JLabel("Profile");
+		lblProfile.setBounds(10, 26, 46, 14);
+		LoginPanel.add(lblProfile);
+		
+		btnCreateProfile = new JButton("Create Profile");
+		btnCreateProfile.setBounds(137, 58, 126, 23);
+		btnCreateProfile.setActionCommand("create");
+		btnCreateProfile.addActionListener(this);
+		LoginPanel.add(btnCreateProfile);
 	}
 	private static final long serialVersionUID = 1L;
-	private JTextField UserField;
-	private JPasswordField PassField;
 	private JButton btnLogin;
 	private JButton btnSettings;
 	private JLabel accountLabel;
@@ -144,14 +146,14 @@ public class NewMainGUI extends JPanel implements ActionListener {
 			btnLogin.setEnabled(false);
 			File dir = new File("launcher_files");
 			dir.mkdir();
-			String user = UserField.getText().toString();
-			char[] charedpass = PassField.getPassword();
-			if (LaunchStore.getDebug() == true) {
-				System.out.println("Username: " + user);
-				System.out.println("Chared Password: " + charedpass.toString());
-			}
-			LaunchStore.setUser(user);
-			LaunchStore.setPassword(charedpass);
+			//String user = UserField.getText().toString();
+			//char[] charedpass = PassField.getPassword();
+			//if (LaunchStore.getDebug() == true) {
+				//System.out.println("Username: " + user);
+				//System.out.println("Chared Password: " + charedpass.toString());
+			//}
+			//LaunchStore.setUser(user);
+			//LaunchStore.setPassword(charedpass);
 			//MCStore.setRam(1);
 			try {
 				LaunchStore.getLauncher().play(0);
@@ -174,6 +176,8 @@ public class NewMainGUI extends JPanel implements ActionListener {
 			       GUIStore.setZipFile(null);
 			}
 
+		} else if ("create".equals(arg0.getActionCommand())) {
+			CreateNewProfileGUI.build();
 		}
 		
 	}
@@ -185,6 +189,9 @@ public class NewMainGUI extends JPanel implements ActionListener {
 		JComponent newContentPane = new NewMainGUI();
 		newContentPane.setOpaque(true);
 		frame.setContentPane(newContentPane);
+		frame.setPreferredSize(new Dimension(500, 500));
+	    frame.pack();
+	    frame.setLocationRelativeTo(null);
 		frame.pack();
 		frame.setVisible(true);
 

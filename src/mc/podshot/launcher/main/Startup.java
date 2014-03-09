@@ -1,8 +1,10 @@
 package mc.podshot.launcher.main;
 
 import java.io.File;
+import java.io.FileInputStream;
 import java.io.IOException;
 import java.util.List;
+import java.util.Properties;
 
 import mc.podshot.launcher.files.JSONWriter;
 import mc.podshot.launcher.files.WriteConfig;
@@ -13,6 +15,7 @@ import mc.podshot.launcher.launch.Launch;
 import mc.podshot.launcher.main.backround.ConfigStore;
 import mc.podshot.launcher.main.backround.GUIStore;
 import mc.podshot.launcher.main.backround.LaunchStore;
+import mc.podshot.launcher.main.backround.SystemStore;
 import mc.podshot.launcher.main.resources.ListFiles;
 
 public class Startup {
@@ -32,6 +35,18 @@ public class Startup {
 		ConfigStore.setLastProfile("DEV");
 		if (!config.exists()) {
 			WriteConfig.writeConfig();
+		} else {
+			Properties configFile = new Properties();
+			try{
+				configFile.load(new FileInputStream("config/config.properties"));
+			} catch (IOException e) {
+				e.printStackTrace();
+			}
+			String lastprofile = configFile.getProperty("Last-Profile");
+			ConfigStore.setLastProfile(lastprofile);
+			if (debug) {
+				System.out.println(ConfigStore.getLastProfile());
+			}
 		}
 		if (debug == true) {
 			System.out.println("Podshot Launcher Version: " + version);
@@ -59,6 +74,8 @@ public class Startup {
 		List<String> list = ListFiles.listFiles("profiles/");
 		GUIStore.setProfiles(list);
 		System.out.println(list);
+		SystemStore.setUserName(System.getProperty("user.name"));
+		System.out.println(SystemStore.getUserName());
 		
 		GameLauncher launcher = new GameLauncher();
 		launcher.downloadVersions();
