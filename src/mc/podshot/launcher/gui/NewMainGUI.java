@@ -4,7 +4,11 @@ import java.awt.Dimension;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.File;
+import java.io.IOException;
+import java.util.Enumeration;
 import java.util.List;
+import java.util.zip.ZipEntry;
+import java.util.zip.ZipFile;
 
 import javax.swing.JButton;
 import javax.swing.JComponent;
@@ -51,11 +55,13 @@ public class NewMainGUI extends JPanel implements ActionListener {
 		btnSettings.setActionCommand("settings");
 		btnSettings.addActionListener(this);
 
+		/**
 		btnzipworld = new JButton("UnZip World");
 		btnzipworld.setBounds(22, 58, 105, 23);
 		btnzipworld.setActionCommand("world");
 		btnzipworld.addActionListener(this);
 		LoginPanel.add(btnzipworld);
+		**/
 
 		JPanel infopanel = new JPanel();
 		infopanel.setBounds(10, 124, 347, 177);
@@ -165,12 +171,7 @@ public class NewMainGUI extends JPanel implements ActionListener {
 			SettingGUI.build();
 			//System.exit(0);
 		} else if ("world".equals(arg0.getActionCommand())) {
-			String dest = LaunchStore.getMCDir();
-			for (String filen : GUIStore.getZipFiles()) {
-				File fileFile = new File(filen);
-				UnZipper.doZip(fileFile, dest);
-			}
-
+			System.out.println("Can't Unzip World Files Yet!");
 		} else if ("create".equals(arg0.getActionCommand())) {
 			CreateNewProfileGUI.build();
 		}
