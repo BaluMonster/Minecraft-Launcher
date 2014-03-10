@@ -4,23 +4,16 @@ import java.awt.Dimension;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.File;
-import java.io.IOException;
-import java.util.Enumeration;
 import java.util.List;
-import java.util.zip.ZipEntry;
-import java.util.zip.ZipFile;
 
 import javax.swing.JButton;
 import javax.swing.JComponent;
-import javax.swing.JFileChooser;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JSpinner;
 import javax.swing.SpinnerListModel;
-import javax.swing.filechooser.FileNameExtensionFilter;
 
-import mc.podshot.launcher.files.UnZipper;
 import mc.podshot.launcher.main.backround.GUIStore;
 import mc.podshot.launcher.main.backround.LaunchStore;
 
@@ -30,6 +23,7 @@ public class NewMainGUI extends JPanel implements ActionListener {
 	private JLabel sessionLabel;
 	private JLabel webLabel;
 	private JLabel skinLabel;
+	@SuppressWarnings("unused")
 	private JButton btnzipworld;
 	private JSpinner profileSpinner;
 	private JButton btnCreateProfile;

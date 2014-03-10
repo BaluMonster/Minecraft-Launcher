@@ -4,14 +4,17 @@ import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
+import java.io.FileWriter;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.io.StringWriter;
 import java.io.UnsupportedEncodingException;
 
 import net.minidev.json.JSONObject;
+import net.minidev.json.JSONValue;
+import net.minidev.json.parser.JSONParser;
 
-public class JSONWriter {
+public class JSONUtils {
 	
 	public static void writeProfileJSON(String username, String password, boolean remember, String version, String profile){
 		JSONObject obj = new JSONObject();
@@ -25,18 +28,16 @@ public class JSONWriter {
 		}
 		obj.put("last Version Ran", version);
 		System.out.print(obj);
-		PrintWriter writer;
+		FileWriter writer;
 		try {
-			writer = new PrintWriter("profiles/Profile-" + profile + ".json", "UTF-8");
-			writer.println(obj);
+			writer = new FileWriter("profiles/Profile-" + profile + ".json");
+			writer.write(obj.toJSONString());
+			writer.flush();
 			writer.close();
-		} catch (FileNotFoundException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		} catch (UnsupportedEncodingException e) {
-			// TODO Auto-generated catch block
+		} catch (IOException e) {
 			e.printStackTrace();
 		}
+		
 	}
 	
 	public static void updateJSON(int updatemode, String field, String value, File update) throws IOException {
@@ -47,7 +48,19 @@ public class JSONWriter {
 		try {
 			json = reader.readLine();
 		} catch (Exception e) {
-			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+	}
+	
+	public static void readJSON(String jsonPath) {
+		Object obj;
+		try {
+			obj = JSONValue.parse(new FileReader(jsonPath));
+			
+			JSONObject json = (JSONObject) obj;
+			
+		} catch (Exception e) {
 			e.printStackTrace();
 		}
 	}

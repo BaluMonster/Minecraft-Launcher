@@ -6,7 +6,7 @@ import java.io.IOException;
 import java.util.List;
 import java.util.Properties;
 
-import mc.podshot.launcher.files.JSONWriter;
+import mc.podshot.launcher.files.JSONUtils;
 import mc.podshot.launcher.files.WriteConfig;
 import mc.podshot.launcher.gui.NewMainGUI;
 import mc.podshot.launcher.launch.GameLauncher;
@@ -57,7 +57,7 @@ public class Startup {
 		}
 		if (debug == true) {
 			System.out.println("Podshot Launcher Version: " + version);
-			JSONWriter.writeProfileJSON("test", "test2", debug, null, version);
+			JSONUtils.writeProfileJSON("test", "test2", true, "1.7.4", "DEV");
 			//try {
 			//JSONWriter.updateJSON(0, version, version, profiledir);
 			//} catch (IOException e) {
@@ -81,9 +81,9 @@ public class Startup {
 		List<String> fnlist = ListFiles.listFileNames("profiles/");
 		GUIStore.setProfiles(fnlist);
 		System.out.println(fnlist);
-		List<String> flist = ListFiles.listFiles("World Archives");
-		System.out.println(flist);
-		GUIStore.setZipFiles(flist);
+		//List<String> flist = ListFiles.listFiles("World Archives");
+		//System.out.println(flist);
+		//GUIStore.setZipFiles(flist);
 		SystemStore.setUserName(System.getProperty("user.name"));
 		System.out.println(SystemStore.getUserName());
 		
