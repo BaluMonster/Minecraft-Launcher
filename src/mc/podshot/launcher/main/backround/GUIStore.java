@@ -5,14 +5,14 @@ import java.util.List;
 
 public class GUIStore {
 	
-	private static File zip;
+	private static List<String> zip;
 	private static List<String> profiles;
 
-	public static void setZipFile(File file) {
-		zip = file;
+	public static void setZipFiles(List<String> flist) {
+		zip = flist;
 	}
 	
-	public static File getZipFile() {
+	public static List<String> getZipFiles() {
 		return zip;
 	}
 

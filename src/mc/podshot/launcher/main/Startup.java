@@ -8,7 +8,6 @@ import java.util.Properties;
 
 import mc.podshot.launcher.files.JSONWriter;
 import mc.podshot.launcher.files.WriteConfig;
-import mc.podshot.launcher.gui.MainGUI;
 import mc.podshot.launcher.gui.NewMainGUI;
 import mc.podshot.launcher.launch.GameLauncher;
 import mc.podshot.launcher.launch.Launch;
@@ -20,6 +19,7 @@ import mc.podshot.launcher.main.resources.ListFiles;
 
 public class Startup {
 
+	@SuppressWarnings("unused")
 	private static Launch instance;
 
 	public static void main(String[] args) {
@@ -48,6 +48,13 @@ public class Startup {
 				System.out.println(ConfigStore.getLastProfile());
 			}
 		}
+		
+		File worldDir = new File("World Archives");
+		if (!worldDir.exists()) {
+			worldDir.mkdir();
+		} else {
+			
+		}
 		if (debug == true) {
 			System.out.println("Podshot Launcher Version: " + version);
 			JSONWriter.writeProfileJSON("test", "test2", debug, null, version);
@@ -71,9 +78,12 @@ public class Startup {
 		if (debug == true) {
 			System.out.println("Building GUI");
 		}
-		List<String> list = ListFiles.listFiles("profiles/");
-		GUIStore.setProfiles(list);
-		System.out.println(list);
+		List<String> fnlist = ListFiles.listFileNames("profiles/");
+		GUIStore.setProfiles(fnlist);
+		System.out.println(fnlist);
+		List<String> flist = ListFiles.listFiles("World Archives");
+		System.out.println(flist);
+		GUIStore.setZipFiles(flist);
 		SystemStore.setUserName(System.getProperty("user.name"));
 		System.out.println(SystemStore.getUserName());
 		

@@ -13,13 +13,13 @@ import mc.podshot.launcher.main.backround.LaunchStore;
 
 public class UnZipper {
 	List<String> filelist;
-	private static final File INPUTZIPFILE = GUIStore.getZipFile();
-	private static final String destfolder = LaunchStore.getMCDir() + "/saves";
+	//private static final File INPUTZIPFILE = GUIStore.getZipFile();
+	//private static final String destfolder = LaunchStore.getMCDir() + "/saves";
 	//private static final String destfolder = "C:/Users/Jonathan/Videos/Dest/";
 	
-	public static void doZip() {
+	public static void doZip(File file, String dest) {
 		UnZipper unZip = new UnZipper();
-    	unZip.unZipIt(INPUTZIPFILE,destfolder);
+    	unZip.unZipIt(file,dest);
 
 	}
 	

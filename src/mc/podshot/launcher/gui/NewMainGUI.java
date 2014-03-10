@@ -33,35 +33,35 @@ public class NewMainGUI extends JPanel implements ActionListener {
 
 	public NewMainGUI() {
 		setLayout(null);
-		
+
 		JPanel LoginPanel = new JPanel();
 		LoginPanel.setBounds(0, 0, 596, 323);
 		add(LoginPanel);
 		LoginPanel.setLayout(null);
-		
+
 		btnLogin = new JButton("Login");
 		btnLogin.setBounds(174, 22, 89, 23);
 		btnLogin.setActionCommand("launch");
 		btnLogin.addActionListener(this);
 		LoginPanel.add(btnLogin);
-		
+
 		btnSettings = new JButton("Settings");
 		btnSettings.setBounds(273, 22, 89, 23);
 		LoginPanel.add(btnSettings);
 		btnSettings.setActionCommand("settings");
 		btnSettings.addActionListener(this);
-		
+
 		btnzipworld = new JButton("UnZip World");
 		btnzipworld.setBounds(22, 58, 105, 23);
 		btnzipworld.setActionCommand("world");
 		btnzipworld.addActionListener(this);
 		LoginPanel.add(btnzipworld);
-		
+
 		JPanel infopanel = new JPanel();
 		infopanel.setBounds(10, 124, 347, 177);
 		LoginPanel.add(infopanel);
 		infopanel.setLayout(null);
-		
+
 		profileSpinner = new JSpinner();
 		List<String> list = GUIStore.getProfiles();
 		String[] profiles = new String[ list.size() ];
@@ -69,7 +69,7 @@ public class NewMainGUI extends JPanel implements ActionListener {
 		profileSpinner.setModel(new SpinnerListModel(profiles));
 		profileSpinner.setBounds(53, 23, 111, 20);
 		LoginPanel.add(profileSpinner);
-		
+
 		if (LaunchStore.getLoginStatus().equalsIgnoreCase("green")) {
 			loginLabel = new JLabel("Login Server is Online");
 			loginLabel.setBounds(10, 10, 127, 14);
@@ -78,7 +78,7 @@ public class NewMainGUI extends JPanel implements ActionListener {
 			loginLabel.setBounds(10, 10, 127, 14);
 		}
 		infopanel.add(loginLabel);
-		
+
 		if (LaunchStore.getAccountStatus().equalsIgnoreCase("green")) {
 			accountLabel = new JLabel("Account Server is Online");
 			accountLabel.setBounds(10, 30, 150, 14);
@@ -87,7 +87,7 @@ public class NewMainGUI extends JPanel implements ActionListener {
 			accountLabel.setBounds(10, 30, 150, 14);
 		}
 		infopanel.add(accountLabel);
-		
+
 		if (LaunchStore.getAuthStatus().equalsIgnoreCase("green")) {
 			authLabel = new JLabel("Authentication Server is Online");
 			authLabel.setBounds(10, 50, 189, 14);
@@ -96,7 +96,7 @@ public class NewMainGUI extends JPanel implements ActionListener {
 			authLabel.setBounds(10, 50, 189, 14);
 		}
 		infopanel.add(authLabel);
-		
+
 		if (LaunchStore.getSessionStatus().equalsIgnoreCase("green")) {
 			sessionLabel = new JLabel("Session Server is Online");
 			sessionLabel.setBounds(10, 70, 150, 14);
@@ -105,7 +105,7 @@ public class NewMainGUI extends JPanel implements ActionListener {
 			sessionLabel.setBounds(10, 70, 150, 14);
 		}
 		infopanel.add(sessionLabel);
-		
+
 		if (LaunchStore.getWebsiteStatus().equalsIgnoreCase("green")) {
 			webLabel = new JLabel("Minecraft.net is Online");
 			webLabel.setBounds(10, 90, 150, 14);
@@ -114,7 +114,7 @@ public class NewMainGUI extends JPanel implements ActionListener {
 			webLabel.setBounds(10, 90, 150, 14);
 		}
 		infopanel.add(webLabel);
-		
+
 		if (LaunchStore.getSkinStatus().equalsIgnoreCase("green")) {
 			skinLabel = new JLabel("Skin Server is Online");
 			skinLabel.setBounds(10, 110, 150, 14);
@@ -123,11 +123,11 @@ public class NewMainGUI extends JPanel implements ActionListener {
 			skinLabel.setBounds(10, 90, 150, 14);
 		}
 		infopanel.add(skinLabel);
-		
+
 		JLabel lblProfile = new JLabel("Profile");
 		lblProfile.setBounds(10, 26, 46, 14);
 		LoginPanel.add(lblProfile);
-		
+
 		btnCreateProfile = new JButton("Create Profile");
 		btnCreateProfile.setBounds(137, 58, 126, 23);
 		btnCreateProfile.setActionCommand("create");
@@ -138,7 +138,7 @@ public class NewMainGUI extends JPanel implements ActionListener {
 	private JButton btnLogin;
 	private JButton btnSettings;
 	private JLabel accountLabel;
-	
+
 
 	@Override
 	public void actionPerformed(ActionEvent arg0) {
@@ -149,8 +149,8 @@ public class NewMainGUI extends JPanel implements ActionListener {
 			//String user = UserField.getText().toString();
 			//char[] charedpass = PassField.getPassword();
 			//if (LaunchStore.getDebug() == true) {
-				//System.out.println("Username: " + user);
-				//System.out.println("Chared Password: " + charedpass.toString());
+			//System.out.println("Username: " + user);
+			//System.out.println("Chared Password: " + charedpass.toString());
 			//}
 			//LaunchStore.setUser(user);
 			//LaunchStore.setPassword(charedpass);
@@ -165,23 +165,18 @@ public class NewMainGUI extends JPanel implements ActionListener {
 			SettingGUI.build();
 			//System.exit(0);
 		} else if ("world".equals(arg0.getActionCommand())) {
-			JFileChooser chooser = new JFileChooser();
-			FileNameExtensionFilter filter = new FileNameExtensionFilter("ZIP Archives", "zip");
-			chooser.setFileFilter(filter);
-			int returnVal  = chooser.showOpenDialog(this.getParent());
-			if(returnVal == JFileChooser.APPROVE_OPTION) {
-			       System.out.println("You chose to open this file: " +chooser.getSelectedFile());
-			       GUIStore.setZipFile(chooser.getSelectedFile());
-			       UnZipper.doZip();
-			       GUIStore.setZipFile(null);
+			String dest = LaunchStore.getMCDir();
+			for (String filen : GUIStore.getZipFiles()) {
+				File fileFile = new File(filen);
+				UnZipper.doZip(fileFile, dest);
 			}
 
 		} else if ("create".equals(arg0.getActionCommand())) {
 			CreateNewProfileGUI.build();
 		}
-		
+
 	}
-	
+
 	private static void createAndShowGUI() {
 
 		JFrame frame = new JFrame("Launcher Test");
@@ -190,8 +185,8 @@ public class NewMainGUI extends JPanel implements ActionListener {
 		newContentPane.setOpaque(true);
 		frame.setContentPane(newContentPane);
 		frame.setPreferredSize(new Dimension(500, 500));
-	    frame.pack();
-	    frame.setLocationRelativeTo(null);
+		frame.pack();
+		frame.setLocationRelativeTo(null);
 		frame.pack();
 		frame.setVisible(true);
 

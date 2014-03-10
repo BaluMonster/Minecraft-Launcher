@@ -6,9 +6,10 @@ import java.util.List;
 
 public class ListFiles {
 	public static List<String> list = new ArrayList<>();
-	
-	
-	public static List<String> listFiles(String ipath) {
+	private static List<String> flist = new ArrayList<>();
+
+
+	public static List<String> listFileNames(String ipath) {
 
 		// Directory path here
 		String path = ipath; 
@@ -31,5 +32,23 @@ public class ListFiles {
 		return list;
 	}
 
+	public static List<String> listFiles(String dir) {
+		String path = dir; 
 
+		String files;
+		File folder = new File(path);
+		File[] listOfFiles = folder.listFiles(); 
+
+		for (int i = 0; i < listOfFiles.length; i++) {
+
+			if (listOfFiles[i].isFile()) {
+				files = listOfFiles[i].getPath();
+				if (files.endsWith(".zip") || files.endsWith(".ZIP")) {
+					System.out.println(files);
+					flist.add(files);
+				}
+			}
+		}
+		return flist ;
+	}
 }
