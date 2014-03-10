@@ -10,13 +10,17 @@ import javax.swing.JPanel;
 import javax.swing.JLabel;
 import javax.swing.JTextField;
 
+import mc.podshot.launcher.files.JSONUtils;
+import mc.podshot.launcher.main.Startup;
 import mc.podshot.launcher.main.backround.SystemStore;
 import javax.swing.JCheckBox;
 import javax.swing.JPasswordField;
+import javax.swing.JButton;
 
 public class CreateNewProfileGUI extends JPanel implements ActionListener {
 	private static JFrame frame;
 	private JCheckBox chckbxRememberpassword;
+	private JButton btnCreateProfile;
 
 	public CreateNewProfileGUI() {
 		setLayout(null);
@@ -66,6 +70,12 @@ public class CreateNewProfileGUI extends JPanel implements ActionListener {
 		passwordField = new JPasswordField();
 		passwordField.setBounds(93, 186, 161, 20);
 		panel.add(passwordField);
+		
+		btnCreateProfile = new JButton("Create Profile");
+		btnCreateProfile.setBounds(24, 241, 115, 23);
+		btnCreateProfile.setActionCommand("done");
+		btnCreateProfile.addActionListener(this);
+		panel.add(btnCreateProfile);
 	}
 	private static final long serialVersionUID = 1L;
 	private JTextField textFieldProfileName;
@@ -75,13 +85,23 @@ public class CreateNewProfileGUI extends JPanel implements ActionListener {
 
 	@Override
 	public void actionPerformed(ActionEvent arg0) {
-		// TODO Auto-generated method stub
+		if ("done".equals(arg0.getActionCommand())) {
+			String pName = textFieldProfileName.getText().toString();
+			String mcDIR = txtC.getText().toString();
+			String user = textField.getText().toString();
+			char[] pass = passwordField.getPassword();
+			boolean remember = chckbxRememberpassword.isSelected();
+			JSONUtils.writeProfileJSON(user, pass.toString(), remember, null, pName, mcDIR);
+			frame.dispose();
+			NewMainGUI.frame.dispose();
+			Startup.GUIStart();
+		}
 		
 	}
 	
 	private static void createAndShowGUI() {
 
-		frame = new JFrame("Launcher Settings");
+		frame = new JFrame("Create Profile");
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		JComponent newContentPane = new CreateNewProfileGUI();
 		newContentPane.setOpaque(true);

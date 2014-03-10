@@ -16,7 +16,7 @@ import net.minidev.json.parser.JSONParser;
 
 public class JSONUtils {
 	
-	public static void writeProfileJSON(String username, String password, boolean remember, String version, String profile){
+	public static void writeProfileJSON(String username, String password, boolean remember, String version, String profile, String mcdir){
 		JSONObject obj = new JSONObject();
 		obj.put("Username", username);
 		if (remember) {
@@ -26,6 +26,7 @@ public class JSONUtils {
 			obj.put("Remember Password", new Boolean(false));
 			obj.put("Password", null);
 		}
+		obj.put("Minecraft Directory", mcdir);
 		obj.put("last Version Ran", version);
 		System.out.print(obj);
 		FileWriter writer;
@@ -53,16 +54,20 @@ public class JSONUtils {
 		
 	}
 	
-	public static void readJSON(String jsonPath) {
+	public static String readJSON(String jsonPath, String field) {
 		Object obj;
+		String strval = null;
 		try {
 			obj = JSONValue.parse(new FileReader(jsonPath));
 			
 			JSONObject json = (JSONObject) obj;
 			
+			strval = (String) json.get(field);
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
+		
+		return strval;
 	}
 	
 

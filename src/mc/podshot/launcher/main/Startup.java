@@ -48,16 +48,18 @@ public class Startup {
 				System.out.println(ConfigStore.getLastProfile());
 			}
 		}
-		
+
+		/**
 		File worldDir = new File("World Archives");
 		if (!worldDir.exists()) {
 			worldDir.mkdir();
 		} else {
-			
+
 		}
+		 **/
 		if (debug == true) {
 			System.out.println("Podshot Launcher Version: " + version);
-			JSONUtils.writeProfileJSON("test", "test2", true, "1.7.4", "DEV");
+			JSONUtils.writeProfileJSON("test", "test2", true, "1.7.4", "DEV", null);
 			//try {
 			//JSONWriter.updateJSON(0, version, version, profiledir);
 			//} catch (IOException e) {
@@ -86,15 +88,20 @@ public class Startup {
 		//GUIStore.setZipFiles(flist);
 		SystemStore.setUserName(System.getProperty("user.name"));
 		System.out.println(SystemStore.getUserName());
-		
+		GUIStart();
+
+		//MainGUI.build();
+
+
+	}
+
+	public static void GUIStart() {
+		NewMainGUI.build();
+
 		GameLauncher launcher = new GameLauncher();
 		launcher.downloadVersions();
 		instance = new Launch(launcher);
 		LaunchStore.setLaunch(launcher);
-		//MainGUI.build();
-		NewMainGUI.build();
-		
-		
 	}
 
 }

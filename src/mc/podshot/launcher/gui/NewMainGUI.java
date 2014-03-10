@@ -14,10 +14,12 @@ import javax.swing.JPanel;
 import javax.swing.JSpinner;
 import javax.swing.SpinnerListModel;
 
+import mc.podshot.launcher.files.JSONUtils;
 import mc.podshot.launcher.main.backround.GUIStore;
 import mc.podshot.launcher.main.backround.LaunchStore;
 
 public class NewMainGUI extends JPanel implements ActionListener {
+	public static JFrame frame;
 	private JLabel loginLabel;
 	private JLabel authLabel;
 	private JLabel sessionLabel;
@@ -146,6 +148,9 @@ public class NewMainGUI extends JPanel implements ActionListener {
 			btnLogin.setEnabled(false);
 			File dir = new File("launcher_files");
 			dir.mkdir();
+			String profile2use = (String) profileSpinner.getValue();
+			String username = JSONUtils.readJSON("profiles/" + profile2use + ".json", "Username");
+			System.out.println("Using profile: " + profile2use);
 			//String user = UserField.getText().toString();
 			//char[] charedpass = PassField.getPassword();
 			//if (LaunchStore.getDebug() == true) {
@@ -155,11 +160,13 @@ public class NewMainGUI extends JPanel implements ActionListener {
 			//LaunchStore.setUser(user);
 			//LaunchStore.setPassword(charedpass);
 			//MCStore.setRam(1);
+			/**
 			try {
 				LaunchStore.getLauncher().play(0);
 			} catch (Exception e) {
 				e.printStackTrace();
 			}
+			**/
 			//setCursor(Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));
 		} else if ("settings".equals(arg0.getActionCommand())) {
 			SettingGUI.build();
@@ -174,7 +181,7 @@ public class NewMainGUI extends JPanel implements ActionListener {
 
 	private static void createAndShowGUI() {
 
-		JFrame frame = new JFrame("Launcher Test");
+		frame = new JFrame("Launcher Test");
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		JComponent newContentPane = new NewMainGUI();
 		newContentPane.setOpaque(true);
