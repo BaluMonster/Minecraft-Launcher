@@ -102,7 +102,7 @@ public class CreateNewProfileGUI extends JPanel implements ActionListener {
 	private static void createAndShowGUI() {
 
 		frame = new JFrame("Create Profile");
-		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		frame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		JComponent newContentPane = new CreateNewProfileGUI();
 		newContentPane.setOpaque(true);
 		frame.setContentPane(newContentPane);
