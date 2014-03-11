@@ -29,6 +29,7 @@ public class NewMainGUI extends JPanel implements ActionListener {
 	private JButton btnzipworld;
 	private JSpinner profileSpinner;
 	private JButton btnCreateProfile;
+	private JButton btnAbout;
 
 
 	public NewMainGUI() {
@@ -135,6 +136,12 @@ public class NewMainGUI extends JPanel implements ActionListener {
 		btnCreateProfile.setActionCommand("create");
 		btnCreateProfile.addActionListener(this);
 		LoginPanel.add(btnCreateProfile);
+		
+		btnAbout = new JButton("About");
+		btnAbout.setBounds(20, 58, 89, 23);
+		btnAbout.setActionCommand("about");
+		btnAbout.addActionListener(this);
+		LoginPanel.add(btnAbout);
 	}
 	private static final long serialVersionUID = 1L;
 	private JButton btnLogin;
@@ -175,6 +182,8 @@ public class NewMainGUI extends JPanel implements ActionListener {
 			System.out.println("Can't Unzip World Files Yet!");
 		} else if ("create".equals(arg0.getActionCommand())) {
 			CreateNewProfileGUI.build();
+		} else if ("about".equals(arg0.getActionCommand())) {
+			AboutGUI.build();
 		}
 
 	}
