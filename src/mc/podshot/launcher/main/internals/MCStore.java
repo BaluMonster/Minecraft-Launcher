@@ -1,4 +1,4 @@
-package mc.podshot.launcher.main.backround;
+package mc.podshot.launcher.main.internals;
 
 public class MCStore {
 	private static int ram;

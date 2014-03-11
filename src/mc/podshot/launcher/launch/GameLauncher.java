@@ -4,7 +4,7 @@ import java.io.File;
 
 import javax.swing.JOptionPane;
 
-import mc.podshot.launcher.main.backround.ProgressDialog;
+import mc.podshot.launcher.main.internals.ProgressDialog;
 import mc.podshot.launcher.main.resources.DefaultLaunchSettings;
 import net.minidev.json.JSONObject;
 import net.minidev.json.JSONValue;

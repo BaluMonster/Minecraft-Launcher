@@ -13,6 +13,8 @@ public class WriteConfig {
 		try {
 			writer = new PrintWriter("config/config.properties", "UTF-8");
 			writer.println("Last-Profile=null");
+			writer.println("DO NOT CHANGE THE FOLLOWING VALUE");
+			writer.println("From Update=false");
 			writer.close();
 		} catch (FileNotFoundException e) {
 			e.printStackTrace();
@@ -20,5 +22,7 @@ public class WriteConfig {
 			e.printStackTrace();
 		}
 	}
+	
+	
 
 }

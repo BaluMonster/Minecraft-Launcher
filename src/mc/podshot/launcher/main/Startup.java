@@ -11,20 +11,28 @@ import mc.podshot.launcher.files.WriteConfig;
 import mc.podshot.launcher.gui.NewMainGUI;
 import mc.podshot.launcher.launch.GameLauncher;
 import mc.podshot.launcher.launch.Launch;
-import mc.podshot.launcher.main.backround.ConfigStore;
-import mc.podshot.launcher.main.backround.GUIStore;
-import mc.podshot.launcher.main.backround.LaunchStore;
-import mc.podshot.launcher.main.backround.SystemStore;
+import mc.podshot.launcher.main.backround.Check4Updates;
+import mc.podshot.launcher.main.internals.ConfigStore;
+import mc.podshot.launcher.main.internals.GUIStore;
+import mc.podshot.launcher.main.internals.LaunchStore;
+import mc.podshot.launcher.main.internals.SystemStore;
 import mc.podshot.launcher.main.resources.ListFiles;
 
 public class Startup {
 
 	@SuppressWarnings("unused")
 	private static Launch instance;
+	public static String version = "v0.0.1 DEV";
+	private static boolean newer;
 
 	public static void main(String[] args) {
 		boolean debug = true;
 		String version = "DEV";
+		try {
+			newer = Check4Updates.checkIfUpdate();
+		} catch (Exception e1) {
+			e1.printStackTrace();
+		}
 		// File Setup
 		File profiledir = new File("profiles");
 		profiledir.mkdir();
@@ -43,6 +51,7 @@ public class Startup {
 				e.printStackTrace();
 			}
 			String lastprofile = configFile.getProperty("Last-Profile");
+			String wasFromUpdate = configFile.getProperty("From Update");
 			ConfigStore.setLastProfile(lastprofile);
 			if (debug) {
 				System.out.println(ConfigStore.getLastProfile());
@@ -96,6 +105,8 @@ public class Startup {
 	}
 
 	public static void GUIStart() {
+		List<String> fnlist = ListFiles.listFileNames("profiles/");
+		GUIStore.setProfiles(fnlist);
 		NewMainGUI.build();
 
 		GameLauncher launcher = new GameLauncher();

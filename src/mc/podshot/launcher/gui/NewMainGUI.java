@@ -15,8 +15,8 @@ import javax.swing.JSpinner;
 import javax.swing.SpinnerListModel;
 
 import mc.podshot.launcher.files.JSONUtils;
-import mc.podshot.launcher.main.backround.GUIStore;
-import mc.podshot.launcher.main.backround.LaunchStore;
+import mc.podshot.launcher.main.internals.GUIStore;
+import mc.podshot.launcher.main.internals.LaunchStore;
 
 public class NewMainGUI extends JPanel implements ActionListener {
 	public static JFrame frame;

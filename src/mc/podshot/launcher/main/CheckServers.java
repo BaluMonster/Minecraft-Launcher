@@ -3,7 +3,7 @@ package mc.podshot.launcher.main;
 import java.util.Arrays;
 import java.util.List;
 
-import mc.podshot.launcher.main.backround.LaunchStore;
+import mc.podshot.launcher.main.internals.LaunchStore;
 import net.minidev.json.JSONArray;
 import net.minidev.json.JSONObject;
 import net.minidev.json.JSONValue;

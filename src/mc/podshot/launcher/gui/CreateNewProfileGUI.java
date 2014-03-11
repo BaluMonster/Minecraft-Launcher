@@ -12,7 +12,8 @@ import javax.swing.JTextField;
 
 import mc.podshot.launcher.files.JSONUtils;
 import mc.podshot.launcher.main.Startup;
-import mc.podshot.launcher.main.backround.SystemStore;
+import mc.podshot.launcher.main.internals.SystemStore;
+
 import javax.swing.JCheckBox;
 import javax.swing.JPasswordField;
 import javax.swing.JButton;

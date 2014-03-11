@@ -1,4 +1,4 @@
-package mc.podshot.launcher.main.backround;
+package mc.podshot.launcher.main.internals;
 
 import java.io.File;
 import java.util.List;

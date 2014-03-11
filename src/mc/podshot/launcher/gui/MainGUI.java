@@ -18,8 +18,8 @@ import javax.swing.SwingConstants;
 
 import mc.podshot.launcher.main.LaunchMC;
 import mc.podshot.launcher.main.Startup;
-import mc.podshot.launcher.main.backround.LaunchStore;
-import mc.podshot.launcher.main.backround.MCStore;
+import mc.podshot.launcher.main.internals.LaunchStore;
+import mc.podshot.launcher.main.internals.MCStore;
 import net.miginfocom.swing.MigLayout;
 
 import org.eclipse.wb.swing.FocusTraversalOnArray;

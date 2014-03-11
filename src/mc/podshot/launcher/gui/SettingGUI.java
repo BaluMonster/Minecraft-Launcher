@@ -14,10 +14,10 @@ import java.util.List;
 import javax.swing.Box;
 import javax.swing.JLabel;
 
-import mc.podshot.launcher.main.backround.GUIStore;
-import mc.podshot.launcher.main.backround.LaunchStore;
-import mc.podshot.launcher.main.backround.MCStore;
-import mc.podshot.launcher.main.backround.SettingStore;
+import mc.podshot.launcher.main.internals.GUIStore;
+import mc.podshot.launcher.main.internals.LaunchStore;
+import mc.podshot.launcher.main.internals.MCStore;
+import mc.podshot.launcher.main.internals.SettingStore;
 
 import javax.swing.JSlider;
 import javax.swing.JSpinner;
