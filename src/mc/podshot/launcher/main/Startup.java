@@ -24,9 +24,9 @@ public class Startup {
 	private static Launch instance;
 	public static String version = "v0.0.1 DEV";
 	private static boolean newer;
+	public static boolean debug = true;
 
 	public static void main(String[] args) {
-		boolean debug = true;
 		String version = "DEV";
 		try {
 			newer = Check4Updates.checkIfUpdate();
