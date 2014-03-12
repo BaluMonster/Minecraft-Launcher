@@ -28,11 +28,6 @@ public class Startup {
 
 	public static void main(String[] args) {
 		String version = "DEV";
-		try {
-			newer = Check4Updates.checkIfUpdate();
-		} catch (Exception e1) {
-			e1.printStackTrace();
-		}
 		// File Setup
 		File profiledir = new File("profiles");
 		profiledir.mkdir();
@@ -51,10 +46,32 @@ public class Startup {
 				e.printStackTrace();
 			}
 			String lastprofile = configFile.getProperty("Last-Profile");
+			String doUpdate = configFile.getProperty("Allow-Updates");
 			String wasFromUpdate = configFile.getProperty("From Update");
 			ConfigStore.setLastProfile(lastprofile);
 			if (debug) {
 				System.out.println(ConfigStore.getLastProfile());
+			}
+			
+			if (doUpdate.equals("true")) {
+				try {
+					newer = Check4Updates.checkIfUpdate();
+				} catch (Exception e1) {
+					e1.printStackTrace();
+				}
+				
+				System.out.println(newer);
+				/**
+				if (newer) {
+					File updates = new File("updates");
+					updates.mkdir();
+					try {
+						Check4Updates.downloadUpdate();
+					} catch (Exception e) {
+						e.printStackTrace();
+					}
+				}
+				**/
 			}
 		}
 
