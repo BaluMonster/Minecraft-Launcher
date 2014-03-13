@@ -3,9 +3,13 @@ package mc.podshot.launcher.gui;
 import java.awt.Dimension;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.image.BufferedImage;
 import java.io.File;
+import java.io.IOException;
 import java.util.List;
 
+import javax.imageio.ImageIO;
+import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JComponent;
 import javax.swing.JFrame;
@@ -15,10 +19,12 @@ import javax.swing.JSpinner;
 import javax.swing.SpinnerListModel;
 
 import mc.podshot.launcher.files.JSONUtils;
+import mc.podshot.launcher.main.internals.ConfigStore;
 import mc.podshot.launcher.main.internals.GUIStore;
 import mc.podshot.launcher.main.internals.LaunchStore;
 
 public class NewMainGUI extends JPanel implements ActionListener {
+	// Main GUI Class
 	public static JFrame frame;
 	private JLabel loginLabel;
 	private JLabel authLabel;
@@ -30,9 +36,11 @@ public class NewMainGUI extends JPanel implements ActionListener {
 	private JSpinner profileSpinner;
 	private JButton btnCreateProfile;
 	private JButton btnAbout;
+	public static String passWord;
 
 
 	public NewMainGUI() {
+		// Sets up GUI, Uses Absolute Layout
 		setLayout(null);
 
 		JPanel LoginPanel = new JPanel();
@@ -142,6 +150,7 @@ public class NewMainGUI extends JPanel implements ActionListener {
 		btnAbout.setActionCommand("about");
 		btnAbout.addActionListener(this);
 		LoginPanel.add(btnAbout);
+		
 	}
 	private static final long serialVersionUID = 1L;
 	private JButton btnLogin;
@@ -167,13 +176,17 @@ public class NewMainGUI extends JPanel implements ActionListener {
 			//LaunchStore.setUser(user);
 			//LaunchStore.setPassword(charedpass);
 			//MCStore.setRam(1);
-			/**
+			
+			if (JSONUtils.readJSON("profiles/" + profile2use + ".json", "Remember Password").equals("false")) {
+				AskForPassword.build();
+			}
+			
 			try {
 				LaunchStore.getLauncher().play(0);
 			} catch (Exception e) {
 				e.printStackTrace();
 			}
-			**/
+		
 			//setCursor(Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));
 		} else if ("settings".equals(arg0.getActionCommand())) {
 			SettingGUI.build();

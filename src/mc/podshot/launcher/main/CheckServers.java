@@ -13,6 +13,7 @@ import sk.tomsik68.mclauncher.util.HttpUtils;
 public class CheckServers {
 	
 	public static void checkServers() throws Exception {
+		// Checks Mojang Server uptime via status.mojang.com
 		String status = HttpUtils.httpGet("http://status.mojang.com/check");
 		Object json = JSONValue.parse(status);
 		JSONArray array = (JSONArray) json;

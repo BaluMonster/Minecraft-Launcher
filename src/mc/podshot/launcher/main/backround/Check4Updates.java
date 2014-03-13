@@ -1,5 +1,6 @@
 package mc.podshot.launcher.main.backround;
 
+import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.net.URL;
@@ -16,6 +17,8 @@ public class Check4Updates {
 	private static Properties configFile = new Properties();
 
 	public static boolean checkIfUpdate() throws Exception {
+		// Looks at update file and cross checks it with the internal version number
+		// If it does not match, get the download url and new version name
 		boolean ret = false;
 		URL url = new URL("http://dl.dropboxusercontent.com/s/3napt7qd80cnxu8/update.txt");
 		configFile.load(url.openStream());
@@ -37,14 +40,12 @@ public class Check4Updates {
 	}
 
 	public static void downloadUpdate() throws Exception {
+		// Downloads the updated file to the "updates" folder
+		File upDir = new File("updates");
+		upDir.mkdir();
 		URL updated = new URL(dlURL);
 		ReadableByteChannel rbc = Channels.newChannel(updated.openStream());
-		FileOutputStream fos = new FileOutputStream(fileName);
+		FileOutputStream fos = new FileOutputStream("updates/" + fileName);
 		fos.getChannel().transferFrom(rbc, 0, Long.MAX_VALUE);
 	}
-
-	public static void renameUpdate() {
-
-	}
-
 }

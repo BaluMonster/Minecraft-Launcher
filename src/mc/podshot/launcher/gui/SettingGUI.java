@@ -23,6 +23,7 @@ import javax.swing.JSlider;
 import javax.swing.JSpinner;
 import javax.swing.SpinnerListModel;
 import javax.swing.JList;
+import javax.swing.JCheckBox;
 
 public class SettingGUI extends JPanel implements ActionListener {
 	private static final long serialVersionUID = 1L;
@@ -55,6 +56,10 @@ public class SettingGUI extends JPanel implements ActionListener {
 		spinner.setModel(new SpinnerListModel(new String[] {"512 MB", "1 GB", "1.5 GB", "2 GB", "2.5 GB", "3 GB"}));
 		spinner.setBounds(100, 51, 71, 20);
 		panel.add(spinner);
+		
+		JCheckBox chckbxAllowAutoupdating = new JCheckBox("Allow Auto-Updating");
+		chckbxAllowAutoupdating.setBounds(22, 85, 148, 23);
+		panel.add(chckbxAllowAutoupdating);
 		List<String> list = GUIStore.getProfiles();
 		String[] profiles = new String[ list.size() ];
 		list.toArray(profiles);

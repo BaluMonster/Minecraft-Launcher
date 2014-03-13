@@ -8,6 +8,7 @@ import java.io.UnsupportedEncodingException;
 public class WriteConfig {
 
 	public static void writeConfig() {
+		//Writes the launcher config
 		
 		PrintWriter writer;
 		try {

@@ -47,19 +47,18 @@ public class Startup {
 			}
 			String lastprofile = configFile.getProperty("Last-Profile");
 			String doUpdate = configFile.getProperty("Allow-Updates");
-			String wasFromUpdate = configFile.getProperty("From Update");
 			ConfigStore.setLastProfile(lastprofile);
 			if (debug) {
 				System.out.println(ConfigStore.getLastProfile());
 			}
-			
+
 			if (doUpdate.equals("true")) {
 				try {
 					newer = Check4Updates.checkIfUpdate();
 				} catch (Exception e1) {
 					e1.printStackTrace();
 				}
-				
+
 				System.out.println(newer);
 				/**
 				if (newer) {
@@ -71,7 +70,7 @@ public class Startup {
 						e.printStackTrace();
 					}
 				}
-				**/
+				 **/
 			}
 		}
 
@@ -86,12 +85,11 @@ public class Startup {
 		if (debug == true) {
 			System.out.println("Podshot Launcher Version: " + version);
 			JSONUtils.writeProfileJSON("test", "test2", true, "1.7.4", "DEV", null);
-			//try {
-			//JSONWriter.updateJSON(0, version, version, profiledir);
-			//} catch (IOException e) {
-			// TODO Auto-generated catch block
-			//e.printStackTrace();
-			//}
+			try {
+				JSONUtils.updateJSON(0, "last Version Ran", "1.7.5", new File("profiles/Profile-Test.json"));
+			} catch (IOException e) {
+				e.printStackTrace();
+			}
 		}
 		// Execution Class, everything that need to be ran before the GUI is initalized
 		LaunchStore.setDebug(debug);
@@ -108,7 +106,7 @@ public class Startup {
 		}
 		List<String> fnlist = ListFiles.listFileNames("profiles/");
 		GUIStore.setProfiles(fnlist);
-		System.out.println(fnlist);
+		//System.out.println(fnlist);
 		//List<String> flist = ListFiles.listFiles("World Archives");
 		//System.out.println(flist);
 		//GUIStore.setZipFiles(flist);
@@ -116,12 +114,11 @@ public class Startup {
 		System.out.println(SystemStore.getUserName());
 		GUIStart();
 
-		//MainGUI.build();
-
-
 	}
 
 	public static void GUIStart() {
+		// Restarts the GUI and Refreshes Profile List
+		// Currently used by the CreateProfile class
 		List<String> fnlist = ListFiles.listFileNames("profiles/");
 		GUIStore.setProfiles(fnlist);
 		NewMainGUI.build();
@@ -131,5 +128,4 @@ public class Startup {
 		instance = new Launch(launcher);
 		LaunchStore.setLaunch(launcher);
 	}
-
 }

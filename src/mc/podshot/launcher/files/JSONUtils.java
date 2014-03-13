@@ -1,22 +1,18 @@
 package mc.podshot.launcher.files;
 
-import java.io.BufferedReader;
 import java.io.File;
-import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
-import java.io.PrintWriter;
-import java.io.StringWriter;
-import java.io.UnsupportedEncodingException;
 
 import net.minidev.json.JSONObject;
 import net.minidev.json.JSONValue;
-import net.minidev.json.parser.JSONParser;
 
 public class JSONUtils {
+	//Handles anything related to JSON Files
 	
 	public static void writeProfileJSON(String username, String password, boolean remember, String version, String profile, String mcdir){
+		// Creates a new Profile JSON File
 		JSONObject obj = new JSONObject();
 		obj.put("Username", username);
 		if (remember) {
@@ -42,12 +38,17 @@ public class JSONUtils {
 	}
 	
 	public static void updateJSON(int updatemode, String field, String value, File update) throws IOException {
-		// int updatemode, String value
-		BufferedReader reader = new BufferedReader(new FileReader(update));
-		@SuppressWarnings("unused")
-		String json = null;
+		// Updates to specified JSON File and field to the new specified value
+		Object obj;
 		try {
-			json = reader.readLine();
+			obj = JSONValue.parse(new FileReader(update));
+			JSONObject json = (JSONObject) obj;
+			json.put(field, value);
+			FileWriter writer = new FileWriter(update);
+			writer.write(json.toJSONString());
+			writer.flush();
+			writer.close();
+			
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
@@ -55,6 +56,7 @@ public class JSONUtils {
 	}
 	
 	public static String readJSON(String jsonPath, String field) {
+		// Reads the specified JSON File
 		Object obj;
 		String strval = null;
 		try {
